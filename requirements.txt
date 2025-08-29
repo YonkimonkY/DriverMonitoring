@@ -1,0 +1,8 @@
+flask==3.0.3
+flask-socketio==5.3.6
+python-socketio==5.11.2
+python-engineio==4.9.1
+opencv-python==4.10.0.84
+dlib==19.24.2
+numpy==1.26.4
+scipy==1.11.4

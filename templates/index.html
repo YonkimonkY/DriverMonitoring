@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <title>Monitor de Fatiga en Tiempo Real</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link href="/static/css/styles.css" rel="stylesheet" />
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <!-- Carga Socket.IO desde el propio servidor de Flask-SocketIO -->
+ <script src="https://cdn.socket.io/4.6.1/socket.io.min.js"></script>
+
+</head>
+<body>
+  <header>
+    <h1>🚗 Monitor de Somnolencia</h1>
+    <p>Detección de <strong>bostezos</strong> y <strong>cierres de ojos prolongados</strong> en tiempo real</p>
+  </header>
+
+  <main class="grid">
+    <section class="card">
+      <h2>Bostezos</h2>
+      <canvas id="yawnsChart" height="200"></canvas>
+      <div class="kpi">
+        <span class="label">Total:</span>
+        <span class="value" id="yawnsTotal">0</span>
+      </div>
+    </section>
+
+    <section class="card">
+      <h2>Cierres de ojos</h2>
+      <canvas id="eyesChart" height="200"></canvas>
+      <div class="kpi">
+        <span class="label">Total:</span>
+        <span class="value" id="eyesTotal">0</span>
+      </div>
+    </section>
+
+    <section class="card">
+      <h2>Alertas</h2>
+      <canvas id="alertsChart" height="200"></canvas>
+      <div class="kpi">
+        <span class="label">Total:</span>
+        <span class="value" id="alertsTotal">0</span>
+      </div>
+    </section>
+
+    <section class="card wide">
+      <h2>📝 Eventos recientes</h2>
+      <ul id="eventsList" class="events"></ul>
+    </section>
+  </main>
+
+  <footer>
+    <small>Hecho con OpenCV + dlib + Flask-SocketIO + Chart.js</small>
+  </footer>
+
+  <script src="/static/js/app.js"></script>
+</body>
+</html>
