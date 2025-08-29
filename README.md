@@ -72,10 +72,17 @@ source venv/bin/activate
 pip install -r requirements.txt
 ```
 
-### 4. Download Required Models
+### 4. Download Required Model
+The `shape_predictor_68_face_landmarks.dat` file should already be included in your repository. If not, download it from:
 ```bash
-# Download dlib face landmark predictor
-python setup_models.py
+# Download the dlib facial landmark predictor model
+wget http://dlib.net/files/shape_predictor_68_face_landmarks.dat.bz2
+bunzip2 shape_predictor_68_face_landmarks.dat.bz2
+```
+
+### 5. Run the Application
+```bash
+python app.py
 ```
 
 ## 🎮 Usage
@@ -91,21 +98,6 @@ python app.py
 3. Allow camera permissions when prompted
 4. Begin monitoring - the system will automatically detect fatigue signs
 
-### Command Line Options
-```bash
-python app.py --camera 0                    # Use default camera
-python app.py --camera 1                    # Use external camera
-python app.py --threshold 0.25              # Set eye closure threshold
-python app.py --debug                       # Enable debug mode
-python app.py --no-audio                    # Disable audio alerts
-```
-
-### Configuration
-Modify `config.py` to customize:
-- Detection thresholds
-- Alert frequencies  
-- Camera settings
-- Dashboard preferences
 
 ## 🔧 Configuration
 
@@ -126,9 +118,15 @@ CAMERA_HEIGHT = 480                  # Resolution height
 FPS_TARGET = 30                      # Target frame rate
 ```
 
-## 📊 Dashboard Features
+## 📊 Dashboard & Statistics
 
-### Real-time Monitor
+### Live Monitoring Interface
+The web dashboard provides real-time monitoring with comprehensive statistics and visual feedback.
+
+![Dashboard Statistics](screenshot_stats.png)
+*Real-time statistics dashboard showing detection metrics and driver monitoring data*
+
+### Dashboard Features
 - Live camera feed with facial landmark overlay
 - Current fatigue status indicators
 - Real-time eye aspect ratio graphs
@@ -165,43 +163,19 @@ Where p1...p6 are eye landmark coordinates.
 ## 📁 Project Structure
 
 ```
-DriverMonitoring/
-├── app.py                  # Main application entry point
-├── config.py              # Configuration settings
-├── requirements.txt       # Python dependencies
-├── setup_models.py        # Model download script
-├── src/
-│   ├── detector.py        # Core detection algorithms
-│   ├── alerts.py          # Alert management system
-│   ├── dashboard.py       # Web dashboard backend
-│   └── utils.py           # Utility functions
-├── templates/
-│   ├── index.html         # Dashboard interface
-│   └── settings.html      # Configuration panel
-├── static/
-│   ├── css/              # Stylesheets
-│   ├── js/               # Client-side JavaScript
-│   └── sounds/           # Alert audio files
-├── models/
-│   └── shape_predictor_68_face_landmarks.dat
-├── data/
-│   └── logs/             # Event logs and session data
-└── tests/
-    └── test_detector.py  # Unit tests
+proyecto_drowsiness/
+├── app.py                     # Main Flask application entry point
+├── requirements.txt           # Python dependencies
+├── shape_predictor_68_face_landmarks.dat  # dlib facial landmark model
+├── static/                   # Static web assets
+│   ├── css/                 # Stylesheets
+│   ├── js/                  # Client-side JavaScript
+│   └── images/              # Images and assets
+├── templates/                # HTML templates for Flask
+│   ├── index.html           # Main dashboard interface
+│   └── stats.html           # Statistics page
 ```
 
-## 🧪 Testing
-
-Run the test suite:
-```bash
-python -m pytest tests/
-```
-
-Test individual components:
-```bash
-python tests/test_detector.py
-python tests/test_alerts.py
-```
 
 ## 🤝 Contributing
 
